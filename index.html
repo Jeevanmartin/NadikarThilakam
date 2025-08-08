@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Useless Task Master</title>
+  <style>
+    body {
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+      background: #f7f7f7;
+    }
+    h1 {
+      color: #555;
+    }
+    .box {
+      background: white;
+      display: inline-block;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    }
+    input {
+      padding: 10px;
+      width: 300px;
+      font-size: 16px;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .message {
+      margin-top: 15px;
+      color: red;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h1>Welcome to Nadikar 🤡</h1>
+    <p id="question">Loading question...</p>
+    <input type="text" id="answer" placeholder="Start typing..." />
+    <div class="message" id="message"></div>
+    <br>
+    <button onclick="nextQuestion()">Next Useless Task</button>
+  </div>
+
+  <script>
+    const questions = [
+      "Give a 20-letter definition of yourself.",
+      "Write a poem about your left sock.",
+      "Explain why the sky is green (oops).",
+      "Describe your dream job in emojis only.",
+      "Confess your most embarrassing moment.",
+      "Translate 'meow' into 3 languages.",
+      "Invent a new color and describe it.",
+      "Summarize your life using 5 hashtags.",
+      "Type your favorite smell (yes, smell).",
+      "Whistle your favorite song (just type it!)."
+    ];
+
+    const interruptions = [
+      "Whoa whoa! That’s too much information.",
+      "Stop! This is getting way too real.",
+      "Nah, we don’t really care.",
+      "Oops. Something went wrong. Try again never.",
+      "Hold up — we lost your input on purpose.",
+      "Too slow. Try again. Or don’t.",
+      "Are you seriously answering this?",
+      "Oops. We forgot what you were doing.",
+      "Uselessness achieved. Moving on.",
+      "Error 404: Your motivation not found."
+    ];
+
+    let currentIndex = -1;
+
+    function getRandomItem(arr) {
+      return arr[Math.floor(Math.random() * arr.length)];
+    }
+
+    function nextQuestion() {
+      currentIndex = (currentIndex + 1) % questions.length;
+      document.getElementById("question").textContent = questions[currentIndex];
+      document.getElementById("answer").value = "";
+      document.getElementById("message").textContent = "";
+    }
+
+    document.getElementById("answer").addEventListener("input", () => {
+      document.getElementById("answer").value = "";
+      document.getElementById("message").textContent = getRandomItem(interruptions);
+    });
+
+    // Initialize first question
+    nextQuestion();
+  </script>
+</body>
+</html>

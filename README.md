@@ -98,7 +98,8 @@ For Software:
 
 # Screenshots 
 
-![Screenshot1](<img width="502" height="636" alt="Nadikar1" src="https://github.com/user-attachments/assets/dc62354c-6d38-4625-8f71-43ed7c85ac80" />)
+Screenshot1- <img width="502" height="636" alt="Nadikar1" src="https://github.com/user-attachments/assets/c0c8f556-287e-498f-a478-600c99d6c71f" />
+
 *A beautiful, high-definition glimpses in action — a WhatsApp-style chat where leg
 endary actors answer in the most silly, random, and completely unhelpful way possible.
 It’s proof that technology can achieve greatness… in doing absolutely nothing useful*

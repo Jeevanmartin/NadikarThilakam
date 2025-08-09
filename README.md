@@ -104,11 +104,10 @@ Screenshot1- <img width="502" height="636" alt="Nadikar1" src="https://github.co
 endary actors answer in the most silly, random, and completely unhelpful way possible.
 It’s proof that technology can achieve greatness… in doing absolutely nothing useful*
 
-![Screenshot2](<img width="503" height="640" alt="Nadikar2" src="https://github.com/user-attachments/assets/7e582275-2257-4cc0-abd8-474e9f9c3e27" />)
+Screenshot2- <img width="503" height="640" alt="Nadikar2" src="https://github.com/user-attachments/assets/7e582275-2257-4cc0-abd8-474e9f9c3e27" />
 
 
-![Screenshot3](<img width="508" height="637" alt="Nadikar3" src="https://github.com/user-attachments/assets/84fe5fee-0e08-497e-9ea3-fbb687dceff6" />
-)
+Screenshot3- <img width="508" height="637" alt="Nadikar3" src="https://github.com/user-attachments/assets/84fe5fee-0e08-497e-9ea3-fbb687dceff6" />
 
 
 ### Project Demo

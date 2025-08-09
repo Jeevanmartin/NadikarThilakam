@@ -1,145 +1,236 @@
 <!DOCTYPE html>
-<html lang="ml">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Nadikar Thilakam</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', sans-serif;
-            background: linear-gradient(135deg, #000000, #1a1a1a, #2e2e2e);
-            color: white;
-            text-align: center;
-            padding: 50px;
-            min-height: 100vh;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NadikarThilakam</title>
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        background: radial-gradient(circle at center, #000 0%, #111 40%, #1a1a1a 100%);
+        position: relative;
+        overflow: hidden;
+        color: #fff;
+    }
 
-        h1 {
-            font-size: 3rem;
-            color: #ffcc00;
-            text-shadow: 2px 2px 20px rgba(255, 204, 0, 0.8);
-            animation: glow 2s infinite alternate;
-        }
+    /* Film reel texture overlay */
+    body::before {
+        content: "";
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background-image: url('https://i.imgur.com/7yR0l36.png');
+        background-size: 250px;
+        opacity: 0.05;
+        pointer-events: none;
+    }
 
-        @keyframes glow {
-            from { text-shadow: 0 0 10px #ffcc00; }
-            to { text-shadow: 0 0 25px #ff6600; }
-        }
+    .chat-container {
+        width: 100%;
+        max-width: 500px;
+        margin: auto;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        background: rgba(0,0,0,0.5);
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 0 40px rgba(255,215,0,0.3);
+        position: relative;
+        z-index: 1;
+    }
 
-        p {
-            color: #ccc;
-            font-size: 1.2rem;
-        }
+    .chat-header {
+        background: linear-gradient(90deg, #ffcc00, #ff6600);
+        color: black;
+        padding: 15px;
+        font-size: 20px;
+        font-weight: bold;
+        text-align: center;
+        letter-spacing: 1px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-shadow: 1px 1px 2px rgba(255,255,255,0.6);
+    }
 
-        input {
-            padding: 12px;
-            width: 60%;
-            font-size: 16px;
-            border-radius: 8px;
-            border: none;
-            outline: none;
-            background: #222;
-            color: white;
-            box-shadow: inset 0 0 5px rgba(255, 255, 255, 0.2);
-        }
+    .chat-messages {
+        flex: 1;
+        padding: 15px;
+        overflow-y: auto;
+        background: rgba(0,0,0,0.3);
+        animation: fadeIn 0.5s ease-in;
+    }
 
-        button {
-            padding: 12px 20px;
-            margin-left: 10px;
-            font-size: 16px;
-            border: none;
-            border-radius: 8px;
-            background: linear-gradient(45deg, #ffcc00, #ff8800);
-            cursor: pointer;
-            font-weight: bold;
-            color: black;
-            transition: 0.3s;
-        }
+    .message {
+        display: flex;
+        align-items: flex-end;
+        margin-bottom: 15px;
+        animation: slideUp 0.4s ease-in;
+    }
 
-        button:hover {
-            transform: scale(1.05);
-            box-shadow: 0px 0px 15px #ffcc00;
-        }
+    .message img {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        margin-right: 8px;
+        border: 2px solid gold;
+        box-shadow: 0 0 8px gold;
+    }
 
-        img {
-            margin-top: 20px;
-            max-width: 250px;
-            border-radius: 12px;
-            border: 4px solid #ffcc00;
-            box-shadow: 0 0 30px rgba(255, 204, 0, 0.6);
-            opacity: 0;
-            transform: scale(0.8);
-            transition: all 0.5s ease;
-        }
+    .message-text {
+        padding: 10px 14px;
+        border-radius: 18px;
+        max-width: 70%;
+        font-size: 15px;
+        line-height: 1.4;
+        color: white;
+    }
 
-        img.show {
-            opacity: 1;
-            transform: scale(1);
-        }
+    .actor-message .message-text {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid gold;
+        box-shadow: 0 0 10px rgba(255,215,0,0.3);
+    }
 
-        .response {
-            margin-top: 20px;
-            font-size: 1.5rem;
-            font-weight: bold;
-            background: rgba(255, 204, 0, 0.1);
-            display: inline-block;
-            padding: 15px 20px;
-            border-radius: 12px;
-            border: 2px solid #ffcc00;
-            max-width: 80%;
-            animation: fadeIn 0.6s ease;
-        }
+    .user-message {
+        justify-content: flex-end;
+    }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-    </style>
+    .user-message .message-text {
+        background: linear-gradient(135deg, #25D366, #128C7E);
+        box-shadow: 0 0 8px rgba(37, 211, 102, 0.4);
+    }
+
+    .chat-input {
+        display: flex;
+        border-top: 1px solid #444;
+        padding: 8px;
+        background-color: rgba(0,0,0,0.8);
+    }
+
+    .chat-input input {
+        flex: 1;
+        padding: 10px;
+        border: 1px solid #666;
+        border-radius: 20px;
+        outline: none;
+        font-size: 14px;
+        background: rgba(255,255,255,0.1);
+        color: white;
+    }
+
+    .chat-input button {
+        background-color: gold;
+        color: black;
+        border: none;
+        border-radius: 50%;
+        width: 42px;
+        height: 42px;
+        margin-left: 8px;
+        cursor: pointer;
+        font-size: 18px;
+        transition: transform 0.2s, background 0.2s;
+    }
+
+    .chat-input button:hover {
+        background-color: #ffcc33;
+        transform: scale(1.1);
+    }
+
+    @keyframes slideUp {
+        from { transform: translateY(20px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+</style>
 </head>
 <body>
-    <h1>🎬 Nadikar Thilakam 🎬</h1>
-    <p>Ask your question and hear from the stars!</p>
-    
-    <input type="text" id="userInput" placeholder="Type your question...">
-    <button onclick="getDialogue()">Ask</button>
-    <div id="response" class="response"></div>
-    <br>
-    <img id="actorImage" src="" alt="">
 
-    <script>
-        const dialogues = {
-            "fahadh": "Athe athe athe...",
-            "jagathi": "Uvva... Nokki irunno...",
-            "mammootty": "Let me remind you one thing!..",
-            "mohanlal": "Entha mone... thamashakkoru parithiyille!",
-            "suresh gopi": "Mone... Thrissur enikk venam... njan athangu edukka!"
-        };
+<div class="chat-container">
+    <div class="chat-header">🎬 NadikarThilakam</div>
+    <div class="chat-messages" id="chatMessages"></div>
+    <div class="chat-input">
+        <input type="text" id="userInput" placeholder="Ask something dramatic...">
+        <button onclick="sendMessage()">➤</button>
+    </div>
+</div>
 
-        const images = {
-            "fahadh": "actors/fahadh.jpg",
-            "jagathi": "actors/jagathi.jpg",
-            "mammootty": "actors/mammootty.jpg",
-            "mohanlal": "actors/mohanlal.jpg",
-            "suresh gopi": "actors/suresh gopi.jpg"
-        };
+<script>
+const actors = [
+    { name: "Fahadh Faasil", image: "actors/fahadh.jpg", responses: [ "Da njan Fahadh ann...nokki samsariikk","Athe Athe Athe Athe?","Nee aroda parayanenn arinj samsarikk","Ellam oru bhagya mone"] },
+    { name: "Jagathi Sreekumar", image: "actors/jagathi.jpg", responses: ["Ee Jagathi sreekumar aranenn nee manassilakkanind aniya...","Itharam karyangal paralle mone...","Njan ivide vaangi irikkunnathalla!","Ok njan poyi tea kudikkatte!","Entha mone ingane"] },
+    { name: "Mammootty", image: "actors/mammootty.jpg", responses: ["Njan mammootty anne mone...koarch respect thanoode","Ninakk njan arann arinjattano samarikkane","Karyam pinne parayam...ippo shoot ann","Poda mone","Ee chodyathinu njan nalla dialogue parayam...wait"] },
+    { name: "Mohanlal", image: "actors/mohanlal.jpg", responses: ["monne lalettanod ninak entha parayande...","Mone velachil edukkalle","Line cut line cut","Njan shootil ann mone.....wait","Idinu njan oru chaya tharam ninakk..."] },
+    { name: "Suresh Gopi", image: "actors/suresh gopi.jpg", responses: [ "Just Remember that","Rajyasabhayil oru meeting und ..bye","Enthokke chodyangal aan ithu?","Ee matter serious aanu...","Ninte question court-il file cheyyatte!"] }
+];
 
-        function getDialogue() {
-            let question = document.getElementById("userInput").value.trim();
-            let responseDiv = document.getElementById("response");
-            let actorImg = document.getElementById("actorImage");
+let lastActor = null;
 
-            if (question.length > 20) {
-                responseDiv.innerHTML = "🤚 Enthina mone ithra kooduthal!";
-                actorImg.src = images["mohanlal"];
-                actorImg.classList.add("show");
-                return;
-            }
+function sendMessage() {
+    const input = document.getElementById("userInput");
+    let text = input.value.trim();
+    if (text === "") return;
 
-            let keys = Object.keys(dialogues);
-            let randomActor = keys[Math.floor(Math.random() * keys.length)];
-            responseDiv.innerHTML = dialogues[randomActor];
-            actorImg.src = images[randomActor];
-            actorImg.classList.add("show");
-        }
-    </script>
+    addMessage("user", text);
+    input.value = "";
+
+    let actor;
+    do { actor = actors[Math.floor(Math.random() * actors.length)]; }
+    while (actor === lastActor);
+    lastActor = actor;
+
+    setTimeout(() => {
+        addMessage("actor", "✍️ typing...", actor);
+    }, 500);
+
+    setTimeout(() => {
+        removeLastMessage();
+        const response = actor.responses[Math.floor(Math.random() * actor.responses.length)];
+        addMessage("actor", response, actor);
+    }, 1500);
+}
+
+function addMessage(sender, text, actorData = null) {
+    const chatMessages = document.getElementById("chatMessages");
+    const msgDiv = document.createElement("div");
+    msgDiv.classList.add("message");
+
+    if (sender === "actor") {
+        msgDiv.classList.add("actor-message");
+        const img = document.createElement("img");
+        img.src = actorData.image;
+        msgDiv.appendChild(img);
+        const textDiv = document.createElement("div");
+        textDiv.classList.add("message-text");
+        textDiv.innerText = text;
+        msgDiv.appendChild(textDiv);
+    } else {
+        msgDiv.classList.add("user-message");
+        const textDiv = document.createElement("div");
+        textDiv.classList.add("message-text");
+        textDiv.innerText = text;
+        msgDiv.appendChild(textDiv);
+    }
+
+    chatMessages.appendChild(msgDiv);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+function removeLastMessage() {
+    const chatMessages = document.getElementById("chatMessages");
+    if (chatMessages.lastChild) {
+        chatMessages.removeChild(chatMessages.lastChild);
+    }
+}
+</script>
+
 </body>
 </html>

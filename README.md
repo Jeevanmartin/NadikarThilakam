@@ -96,9 +96,11 @@ code .
 ### Project Documentation
 For Software:
 
-# Screenshots (Add at least 3)
-![Screenshot1](<img width="502" height="636" alt="Nadikar1" src="https://github.com/user-attachments/assets/9e81554e-d6a2-4478-8030-30702a3590f8" />)
-*A beautiful, high-definition glimpses in action — a WhatsApp-style chat where legendary actors answer in the most silly, random, and completely unhelpful way possible.
+# Screenshots 
+
+![Screenshot1](<img width="502" height="636" alt="Nadikar1" src="https://github.com/user-attachments/assets/dc62354c-6d38-4625-8f71-43ed7c85ac80" />)
+*A beautiful, high-definition glimpses in action — a WhatsApp-style chat where leg
+endary actors answer in the most silly, random, and completely unhelpful way possible.
 It’s proof that technology can achieve greatness… in doing absolutely nothing useful*
 
 ![Screenshot2](<img width="503" height="640" alt="Nadikar2" src="https://github.com/user-attachments/assets/7e582275-2257-4cc0-abd8-474e9f9c3e27" />)
